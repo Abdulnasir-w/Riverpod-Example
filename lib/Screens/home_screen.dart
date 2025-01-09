@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:riverpord_example/Components/custom_button.dart';
 import 'package:riverpord_example/Examples/Counter%20App/counter_app.dart';
 import 'package:riverpord_example/Examples/Crud%20Operation/item_screen.dart';
+import 'package:riverpord_example/Examples/Favorite%20App/favorite_screen.dart';
 import 'package:riverpord_example/Examples/Multiple%20State/multiple_state.dart';
 import 'package:riverpord_example/Examples/Slider/slider_app.dart';
 import 'package:riverpord_example/Examples/State%20Notifier%20Provider/search_screen.dart';
@@ -74,6 +75,13 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => ItemScreen()));
+              },
+            ),
+            CustomButton(
+              label: "Favorite Screen",
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => FavoriteScreen()));
               },
             ),
           ],
