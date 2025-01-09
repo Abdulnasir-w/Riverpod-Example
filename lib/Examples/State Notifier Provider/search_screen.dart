@@ -30,13 +30,15 @@ class SearchScreen extends ConsumerWidget {
                 ref.read(searchPro.notifier).search(value);
               },
             ),
-            Consumer(builder: (context, ref, child) {
-              final search = ref.watch(searchPro);
-              return Text(
-                search.search,
-                style: TextStyle(fontSize: 27.0),
-              );
-            })
+            Consumer(
+              builder: (context, ref, child) {
+                final search = ref.watch(searchPro);
+                return Text(
+                  search.search,
+                  style: TextStyle(fontSize: 27.0),
+                );
+              },
+            ),
           ],
         ),
       ),

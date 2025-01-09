@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:riverpord_example/Components/custom_button.dart';
 import 'package:riverpord_example/Examples/Counter%20App/counter_app.dart';
+import 'package:riverpord_example/Examples/Crud%20Operation/item_screen.dart';
 import 'package:riverpord_example/Examples/Multiple%20State/multiple_state.dart';
 import 'package:riverpord_example/Examples/Slider/slider_app.dart';
 import 'package:riverpord_example/Examples/State%20Notifier%20Provider/search_screen.dart';
 import 'package:riverpord_example/Examples/Switch/switch_app.dart';
+
+import '../Examples/Button/button_loading.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -44,6 +47,13 @@ class HomeScreen extends StatelessWidget {
                     context, MaterialPageRoute(builder: (_) => SliderApp()));
               },
             ),
+            CustomButton(
+              label: "Show Loading",
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => ButtonLoading()));
+              },
+            ),
             Divider(),
             CustomButton(
               label: "Multiple State",
@@ -57,6 +67,13 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (_) => SearchScreen()));
+              },
+            ),
+            CustomButton(
+              label: "Item Screen With CRUD Operation",
+              onPressed: () {
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => ItemScreen()));
               },
             ),
           ],
