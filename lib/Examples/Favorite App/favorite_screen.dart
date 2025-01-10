@@ -7,7 +7,7 @@ class FavoriteScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final favoriteState = ref.watch(favoriteProvider);
+    debugPrint("Scaffold build");
     return Scaffold(
       appBar: AppBar(
         title: const Text('Favorite Screen'),
@@ -16,33 +16,43 @@ class FavoriteScreen extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
         child: Column(
           children: [
-            TextField(
-              onChanged: (value) {
-                ref.read(favoriteProvider.notifier).filter(value);
+            Consumer(
+              builder: (context, ref, child) {
+                return TextField(
+                  onChanged: (value) {
+                    debugPrint("Search:");
+                    ref.read(favoriteProvider.notifier).filter(value);
+                  },
+                  decoration: InputDecoration(
+                    hintText: "Search",
+                    prefixIcon: const Icon(Icons.search),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.grey),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Colors.deepOrange),
+                    ),
+                  ),
+                );
               },
-              decoration: InputDecoration(
-                hintText: "Search",
-                prefixIcon: const Icon(Icons.search),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.deepOrange),
-                ),
-              ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemCount: favoriteState.favoriteItems.length,
-                itemBuilder: (context, index) {
-                  final item = favoriteState.favoriteItems[index];
-                  return ListTile(
-                    title: Text(item.name),
-                    trailing: Icon(item.isFavorite
-                        ? Icons.favorite
-                        : Icons.favorite_border),
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final favoriteState = ref.watch(favoriteProvider);
+                  return ListView.builder(
+                    itemCount: favoriteState.favoriteItems.length,
+                    itemBuilder: (context, index) {
+                      final item = favoriteState.favoriteItems[index];
+                      return ListTile(
+                        title: Text(item.name),
+                        trailing: Icon(item.isFavorite
+                            ? Icons.favorite
+                            : Icons.favorite_border),
+                      );
+                    },
                   );
                 },
               ),
@@ -52,6 +62,7 @@ class FavoriteScreen extends ConsumerWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          debugPrint("FloatActionButton");
           ref.read(favoriteProvider.notifier).addItem();
         },
         backgroundColor: Colors.deepOrange,

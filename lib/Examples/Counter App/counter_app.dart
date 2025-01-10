@@ -10,7 +10,7 @@ class CounterApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    debugPrint('build 2');
+    debugPrint('Scaffold build');
     return Scaffold(
       appBar: AppBar(
         title: Text(

@@ -27,7 +27,7 @@ class MultipleState extends ConsumerWidget {
                 width: 200,
                 height: 150,
                 decoration: BoxDecoration(
-                  color: Colors.deepOrange.withOpacity(sliderValueState),
+                  color: Colors.deepOrange.withAlpha(sliderValueState.toInt()),
                 ),
               );
             }),

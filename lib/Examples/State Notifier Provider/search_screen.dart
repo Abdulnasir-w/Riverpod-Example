@@ -10,6 +10,7 @@ class SearchScreen extends ConsumerWidget {
     OutlineInputBorder outlineInputBorder = OutlineInputBorder(
       borderSide: BorderSide(color: Colors.blue),
     );
+    debugPrint("Scaffold build");
     return Scaffold(
       appBar: AppBar(
         title: const Text('Search'),
@@ -32,6 +33,7 @@ class SearchScreen extends ConsumerWidget {
             ),
             Consumer(
               builder: (context, ref, child) {
+                debugPrint("Text build");
                 final search = ref.watch(searchPro);
                 return Text(
                   search.search,

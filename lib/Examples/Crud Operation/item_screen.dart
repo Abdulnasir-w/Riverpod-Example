@@ -9,6 +9,7 @@ class ItemScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final itemsShow = ref.watch(itemProvider);
+    debugPrint("Scaffold build");
     return Scaffold(
       appBar: AppBar(
         title: const Text('Item Screen'),
@@ -38,6 +39,7 @@ class ItemScreen extends ConsumerWidget {
                                 IconButton(
                                   icon: Icon(Icons.edit),
                                   onPressed: () {
+                                    debugPrint("Edit");
                                     fields(context, ref, itemDetail.name,
                                         (newName) {
                                       ref
@@ -49,6 +51,8 @@ class ItemScreen extends ConsumerWidget {
                                 IconButton(
                                   icon: Icon(Icons.delete),
                                   onPressed: () {
+                                    debugPrint("Edit");
+
                                     ref
                                         .read(itemProvider.notifier)
                                         .deleteItem(itemDetail.id);
